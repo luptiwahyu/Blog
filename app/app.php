@@ -12,7 +12,7 @@ date_default_timezone_set('Asia/Jakarta');
 
 // Instantiate the app
 $app = new \Slim\Slim(array(
-    'mode'           => file_get_contents(ROOT_PATH . '/mode.php'),
+    'mode'           => 'development',
     'debug'          => true,
     'templates.path' => ROOT_PATH . '/src',
     'view'           => new \Slim\Views\Twig(),
