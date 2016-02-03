@@ -4,7 +4,6 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 use Illuminate\Database\Connectors\Connector;
 
-
 $capsule = new Capsule;
 
 $capsule->addConnection([

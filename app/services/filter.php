@@ -4,7 +4,6 @@ $authenticationCheck = function($required) use ($app) {
     return function() use ($required, $app) {
         if ( (!$app->auth && $required) || ($app->auth && !$required) ) {
             $app->notFound();
-            // $app->redirect('/');
         }
     };
 };
@@ -20,7 +19,6 @@ $guest = function() use ($authenticationCheck) {
 $authForRole = function($role) use ($app) {
     return function() use ($role, $app) {
         if (!$app->auth || $app->auth->role != $role ) {
-            // $app->redirect('/');
             $app->notFound();
         }
     };
