@@ -1,0 +1,7 @@
+composer.phar
+/vendor/
+/app/logs/*
+/app/cache/twig/*
+composer.lock
+!/app/logs/.keepme
+!/app/cache/twig/.keepme

@@ -1,0 +1,67 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}User ~ view{% endblock %}
+
+{% block body %}
+  <h1 class="page-header">View user</h1>
+
+  {% include 'Templates/Messages/flash-success.html' %}
+
+  <table class="table mt2">
+    <tbody>
+      <tr>
+        <td class="text-bold col-xs-4 col-sm-2">ID</td>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Name</td>
+        <td>{{ user.name|title }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Date of birth</td>
+        <td>
+          {% if user.dob %}
+            {{ user.dob|date('d F Y') }}
+          {% else %}
+            <em class="text-warning">not specified</em>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td class="text-bold">Role</td>
+        <td>{{ user.role|title }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Active</td>
+        <td>{{ user.active == true ? 'Yes' : 'No' }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Email</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Password</td>
+        <td>********</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Joined</td>
+        <td>{{ user.created_at|date('d M Y H:i:s') }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Last modified</td>
+        <td>{{ user.updated_at|date('d M Y H:i:s') }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    {% if user.active == true %}
+      <form action="{{ urlFor('user_deactivate_id', {'id': user.id}) }}" method="POST">
+        <input type="hidden" name="_METHOD" value="PUT"/>
+        <button type="submit" class="btn btn-link">Deactivate account</button>
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+      </form>
+    {% endif %}
+  </div>
+
+{% endblock %}

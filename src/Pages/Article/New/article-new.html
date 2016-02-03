@@ -1,0 +1,48 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}Article ~ new{% endblock %}
+
+{% block body %}
+  <h1 class="page-header">New article</h1>
+
+  {% include 'Templates/Messages/errors.html' %}
+  
+  <form action="{{ urlFor('article_new_post') }}" method="POST" class="form-horizontal">
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-5">
+        <input type="text" name="title" class="form-control" id="title" placeholder="Article title" {% if request.post('title') %}value="{{ request.post('title') }}"{% endif %}>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Content</label>
+      <div class="col-sm-8">
+        <textarea name="content" id="editor1" rows="10" cols="80">
+          {% if request.post('content') %}
+            {{ request.post('content') }}
+          {% endif %}
+        </textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" name="publish" class="btn btn-primary">Publish now</button>
+        <button type="submit" name="save" class="btn btn-default ml1">Save. Publish later</button>
+      </div>
+    </div>
+
+    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+  </form>
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="//cdn.ckeditor.com/4.5.6/basic/ckeditor.js"></script>
+  <!--<script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>-->
+  <!--<script src="//cdn.ckeditor.com/4.5.6/full/ckeditor.js"></script>-->
+  <script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor1' );
+  </script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% if flash.error %}
+  <div class="media mt2">
+    <div class="pull-left">
+      <img class="media-object" src="img/notice/cross28.png" alt="Image">
+    </div>
+    <div class="media-body">
+      <p class="text-danger">{{ flash.error }}</p>
+    </div>
+  </div>
+{% endif %}

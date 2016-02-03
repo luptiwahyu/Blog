@@ -1,0 +1,60 @@
+{% extends 'Templates/Front/main.html' %}
+
+{% block title %}Welcome ~ Blog Slim{% endblock %}
+
+{% block active_home %}active{% endblock %}
+
+{% block body %}
+
+  {% for article in articles %}
+    <div class="blog-post">
+      <h2 class="blog-post-title">{{ article.title|title }}</h2>
+      <p class="blog-post-meta">{{ article.updated_at|time_diff }} by <a href="#">{{ article.user.name|title }}</a></p>
+
+      {# {{ article.content[:400]|raw }} ... #}
+
+      {% set articleContent = article.content|split('.') %}
+      {{ articleContent[0]|raw }}.
+      {{ articleContent[1]|raw }}.
+      {{ articleContent[2]|raw }}.
+      {{ articleContent[3]|raw }}.
+      {{ articleContent[4]|raw }}.
+
+      <p class="mt1">
+        <a href="{{ urlFor('article_view', {'title': article.title, 'id': article.id}) }}">Read more</a>
+      </p>
+    </div><!-- /.blog-post -->
+  {% endfor %}
+
+  <nav>
+    <ul class="pager">
+      <li class="previous">
+        <a href="{{ urlFor('article_page', {'number': 2}) }}"><span aria-hidden="true">&larr;</span> Older</a>
+      </li>
+      <li class="next disabled">
+        <a>Newer <span aria-hidden="true">&rarr;</span></a>
+      </li>
+    </ul>
+  </nav><!-- /.simple pagination -->
+  
+  {# <nav>
+    <ul class="pagination pagination-lg mt0 mb4">
+      <li class="disabled">
+        <a aria-label="Previous">
+          <span aria-hidden="true">Previous</span>
+        </a>
+      </li>
+      {% for page in 1..pages %}
+        <li class="{% if page == 1 %}active{% endif %}">
+          <a {% if page > 1 %}href="{{ urlFor('article_page', {'number': page}) }}"{% endif %}>{{ page }}</a>
+        </li>
+      {% endfor %}
+      <li>
+        <a href="{{ urlFor('article_page', {'number': 2}) }}" aria-label="Next">
+          <span aria-hidden="true">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav><!-- /.number pagination --> #}
+
+{% endblock %}

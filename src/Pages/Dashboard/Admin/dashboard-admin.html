@@ -1,0 +1,121 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.0.0/css/responsive.bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+
+  <h1 class="page-header">Dashboard</h1>
+
+  {% include 'Templates/Messages/flash-success.html' %}
+  {% include 'Templates/Messages/flash-error.html' %}
+
+
+  <h3 class="page-header mt2">Authors list</h3>
+  
+  <div class="mb4">
+    <table class="table table-bordered table-hover dt-responsive nowrap" id="author" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Active</th>
+          <th>Joined</th>
+          <th>Last modified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if users is empty %}
+          <tr>
+            <td class="text-center warning" colspan="5"><em>No user</em></td>
+          </tr>
+        {% endif %}
+        {% for user in users %}
+          <tr>
+            <td>{{ user.name|title }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.active == true ? 'Yes' : 'No' }}</td>
+            <td>{{ user.created_at|date('d M Y H:i:s') }}</td>
+            <td>{{ user.updated_at|date('d M Y H:i:s') }}</td>
+            <td class="actions">
+              <a href="{{ urlFor('user_show', {'id': user.id}) }}" type="button" class="btn btn-xs btn-success">
+                View
+              </a>
+              {% if user.active == true %}
+                <form action="{{ urlFor('user_deactivate_id', {'id': user.id}) }}" method="POST">
+                  <input type="hidden" name="_METHOD" value="PUT"/>
+                  <button type="submit" class="btn btn-danger btn-xs">Deactivate</button>
+                  <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+  </div>
+
+
+  <h3 class="page-header">Articles list</h3>
+
+  <div class="mt2 mb5">
+    <table class="table table-bordered table-hover dt-responsive nowrap" id="article" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Published Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if articles is empty %}
+          <tr>
+            <td class="text-center warning" colspan="5"><em>No article</em></td>
+          </tr>
+        {% endif %}
+        {% for article in articles %}
+          <tr>
+            <td>{{ article.title|title }}</td>
+            <td>{{ article.user.name|title }}</td>
+            <td>{{ article.updated_at|date('d M Y H:i:s') }}</td>
+            <td class="actions">
+              <a href="{{ urlFor('article_show', {'id': article.id}) }}" type="button" class="btn btn-xs btn-success">
+                View
+              </a>
+              <!-- DELETE FORM -->
+              <form action="{{ urlFor('article_delete', {'id': article.id}) }}" method="POST">
+                <input type="hidden" name="_METHOD" value="DELETE"/>
+                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.0.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.0.0/js/responsive.bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#author').DataTable();
+    });
+
+    $(document).ready(function() {
+      $('#article').DataTable();
+    });
+  </script>
+{% endblock %}

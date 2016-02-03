@@ -1,0 +1,226 @@
+/**
+ * ====================================================
+ *  Padding
+ * ====================================================
+ */
+
+/* All */
+.p0 { padding: 0 !important; }
+.p1 { padding: 1rem !important; }
+.p2 { padding: 2rem !important; }
+.p3 { padding: 3rem !important; }
+.p4 { padding: 4rem !important; }
+.p5 { padding: 5rem !important; }
+
+/* Top */ 
+.pt0 { padding-top: 0 !important; }
+.pt1 { padding-top: 1rem !important; }
+.pt2 { padding-top: 2rem !important; }
+.pt3 { padding-top: 3rem !important; }
+.pt4 { padding-top: 4rem !important; }
+.pt5 { padding-top: 5rem !important; }
+
+/* Right */
+.pr0 { padding-right: 0 !important; }
+.pr1 { padding-right: 1rem !important; }
+.pr2 { padding-right: 2rem !important; }
+.pr3 { padding-right: 3rem !important; }
+.pr4 { padding-right: 4rem !important; }
+.pr5 { padding-right: 5rem !important; }
+
+/* Bottom */
+.pb0 { padding-bottom: 0 !important; }
+.pb1 { padding-bottom: 1rem !important; }
+.pb2 { padding-bottom: 2rem !important; }
+.pb3 { padding-bottom: 3rem !important; }
+.pb4 { padding-bottom: 4rem !important; }
+.pb5 { padding-bottom: 5rem !important; }
+
+/* Left */
+.pl0 { padding-left: 0 !important; }
+.pl1 { padding-left: 1rem !important; }
+.pl2 { padding-left: 2rem !important; }
+.pl3 { padding-left: 3rem !important; }
+.pl4 { padding-left: 4rem !important; }
+.pl5 { padding-left: 5rem !important; }
+
+/* Negative All */
+.pn1 { padding: -1rem !important; }
+.pn2 { padding: -2rem !important; }
+.pn3 { padding: -3rem !important; }
+.pn4 { padding: -4rem !important; }
+.pn5 { padding: -5rem !important; }
+
+/* Negative Top */
+.ptn1 { padding-top: -1rem !important; }
+.ptn2 { padding-top: -2rem !important; }
+.ptn3 { padding-top: -3rem !important; }
+.ptn4 { padding-top: -4rem !important; }
+.ptn5 { padding-top: -5rem !important; }
+
+/* Negative Right */
+.prn1 { padding-right: -1rem !important; }
+.prn2 { padding-right: -2rem !important; }
+.prn3 { padding-right: -3rem !important; }
+.prn4 { padding-right: -4rem !important; }
+.prn5 { padding-right: -5rem !important; }
+
+/* Negative Bottom */
+.pbn1 { padding-bottom: -1rem !important; }
+.pbn2 { padding-bottom: -2rem !important; }
+.pbn3 { padding-bottom: -3rem !important; }
+.pbn4 { padding-bottom: -4rem !important; }
+.pbn5 { padding-bottom: -5rem !important; }
+
+/* Negative Left */
+.pln1 { padding-left: -1rem !important; }
+.pln2 { padding-left: -2rem !important; }
+.pln3 { padding-left: -3rem !important; }
+.pln4 { padding-left: -4rem !important; }
+.pln5 { padding-left: -5rem !important; }
+
+/* Y Axis */
+.py0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.py1 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+.py2 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+.py3 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+.py4 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+.py5 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+
+/* X Axis */
+.px0 { padding-left: 0 !important; padding-right: 0 !important; }
+.px1 { padding-left: 1rem !important; padding-right: 1rem !important; }
+.px2 { padding-left: 2rem !important; padding-right: 2rem !important; }
+.px3 { padding-left: 3rem !important; padding-right: 3rem !important; }
+.px4 { padding-left: 4rem !important; padding-right: 4rem !important; }
+.px5 { padding-left: 5rem !important; padding-right: 5rem !important; }
+
+/* Negative Y Axis */
+.pyn1 { padding-top: -1rem !important; padding-bottom: -1rem !important; }
+.pyn2 { padding-top: -2rem !important; padding-bottom: -2rem !important; }
+.pyn3 { padding-top: -3rem !important; padding-bottom: -3rem !important; }
+.pyn4 { padding-top: -4rem !important; padding-bottom: -4rem !important; }
+.pyn5 { padding-top: -5rem !important; padding-bottom: -5rem !important; }
+
+/* Negative X Axis */
+.pxn1 { padding-left: -1rem !important; padding-right: -1rem !important; }
+.pxn2 { padding-left: -2rem !important; padding-right: -2rem !important; }
+.pxn3 { padding-left: -3rem !important; padding-right: -3rem !important; }
+.pxn4 { padding-left: -4rem !important; padding-right: -4rem !important; }
+.pxn5 { padding-left: -5rem !important; padding-right: -5rem !important; }
+
+
+/**
+ * ====================================================
+ *  Margins
+ * ====================================================
+ */
+
+/* Auto */
+.m-auto  { margin: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* All */
+.m0 { margin: 0 !important; }
+.m1 { margin: 1rem !important; }
+.m2 { margin: 2rem !important; }
+.m3 { margin: 3rem !important; }
+.m4 { margin: 4rem !important; }
+.m5 { margin: 5rem !important; }
+
+/* Top */
+.mt0 { margin-top: 0 !important; }
+.mt1 { margin-top: 1rem !important; }
+.mt2 { margin-top: 2rem !important; }
+.mt3 { margin-top: 3rem !important; }
+.mt4 { margin-top: 4rem !important; }
+.mt5 { margin-top: 5rem !important; }
+
+/* Right */
+.mr0 { margin-right: 0 !important; }
+.mr1 { margin-right: 1rem !important; }
+.mr2 { margin-right: 2rem !important; }
+.mr3 { margin-right: 3rem !important; }
+.mr4 { margin-right: 4rem !important; }
+.mr5 { margin-right: 5rem !important; }
+
+/* Bottom */
+.mb0 { margin-bottom: 0 !important; }
+.mb1 { margin-bottom: 1rem !important; }
+.mb2 { margin-bottom: 2rem !important; }
+.mb3 { margin-bottom: 3rem !important; }
+.mb4 { margin-bottom: 4rem !important; }
+.mb5 { margin-bottom: 5rem !important; }
+
+/* Left */
+.ml0 { margin-left: 0 !important; }
+.ml1 { margin-left: 1rem !important; }
+.ml2 { margin-left: 2rem !important; }
+.ml3 { margin-left: 3rem !important; }
+.ml4 { margin-left: 4rem !important; }
+.ml5 { margin-left: 5rem !important; }
+
+/* Negative All */
+.mn1 { margin: -1rem !important; }
+.mn2 { margin: -2rem !important; }
+.mn3 { margin: -3rem !important; }
+.mn4 { margin: -4rem !important; }
+.mn5 { margin: -5rem !important; }
+
+/* Negative Top */
+.mtn1 { margin-top: -1rem !important; }
+.mtn2 { margin-top: -2rem !important; }
+.mtn3 { margin-top: -3rem !important; }
+.mtn4 { margin-top: -4rem !important; }
+.mtn5 { margin-top: -5rem !important; }
+
+/* Negative Right */
+.mrn1 { margin-right: -1rem !important; }
+.mrn2 { margin-right: -2rem !important; }
+.mrn3 { margin-right: -3rem !important; }
+.mrn4 { margin-right: -4rem !important; }
+.mrn5 { margin-right: -5rem !important; }
+
+/* Negative Bottom */
+.mbn1 { margin-bottom: -1rem !important; }
+.mbn2 { margin-bottom: -2rem !important; }
+.mbn3 { margin-bottom: -3rem !important; }
+.mbn4 { margin-bottom: -4rem !important; }
+.mbn5 { margin-bottom: -5rem !important; }
+
+/* Negative Left */
+.mln1 { margin-left: -1rem !important; }
+.mln2 { margin-left: -2rem !important; }
+.mln3 { margin-left: -3rem !important; }
+.mln4 { margin-left: -4rem !important; }
+.mln5 { margin-left: -5rem !important; }
+
+/* Y Axis */
+.my0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+.my1 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+.my2 { margin-top: 2rem !important; margin-bottom: 2rem !important; }
+.my3 { margin-top: 3rem !important; margin-bottom: 3rem !important; }
+.my4 { margin-top: 4rem !important; margin-bottom: 4rem !important; }
+.my5 { margin-top: 5rem !important; margin-bottom: 5rem !important; }
+
+/* X Axis */
+.mx0 { margin-left: 0 !important; margin-right: 0 !important; }
+.mx1 { margin-left: 1rem !important; margin-right: 1rem !important; }
+.mx2 { margin-left: 2rem !important; margin-right: 2rem !important; }
+.mx3 { margin-left: 3rem !important; margin-right: 3rem !important; }
+.mx4 { margin-left: 4rem !important; margin-right: 4rem !important; }
+.mx5 { margin-left: 5rem !important; margin-right: 5rem !important; }
+
+/* Negative Y Axis */
+.myn1 { margin-top: -1rem !important; margin-bottom: -1rem !important; }
+.myn2 { margin-top: -2rem !important; margin-bottom: -2rem !important; }
+.myn3 { margin-top: -3rem !important; margin-bottom: -3rem !important; }
+.myn4 { margin-top: -4rem !important; margin-bottom: -4rem !important; }
+.myn5 { margin-top: -5rem !important; margin-bottom: -5rem !important; }
+
+/* Negative X Axis */
+.mxn1 { margin-left: -1rem !important; margin-right: -1rem !important; }
+.mxn2 { margin-left: -2rem !important; margin-right: -2rem !important; }
+.mxn3 { margin-left: -3rem !important; margin-right: -3rem !important; }
+.mxn4 { margin-left: -4rem !important; margin-right: -4rem !important; }
+.mxn5 { margin-left: -5rem !important; margin-right: -5rem !important; }

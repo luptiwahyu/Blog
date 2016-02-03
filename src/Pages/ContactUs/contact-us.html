@@ -1,0 +1,36 @@
+{% extends 'Templates/Front/main.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block active_contact %}active{% endblock %}
+
+{% block body %}
+  <div class="blog-post">
+
+    <h2 class="blog-post-title mb2">Contact us</h2>
+
+    {% include 'Templates/Messages/errors.html' %}
+
+    <form method="POST" action="{{ urlFor('contact_us_post') }}">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="Your name" {% if request.post('name') %}value="{{ request.post('name') }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="e.g. example@gmail.com" {% if request.post('email') %}value="{{ request.post('email') }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject" {% if request.post('subject') %}value="{{ request.post('subject') }}"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" class="form-control" rows="5" placeholder="Message">{% if request.post('message') %}{{ request.post('message') }}{% endif %}</textarea>
+      </div>
+      <button type="submit" class="btn btn-default btn-lg">Send</button>
+      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+    </form>
+
+  </div><!-- /.blog-post -->
+{% endblock %}

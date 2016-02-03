@@ -1,0 +1,54 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}Article ~ view{% endblock %}
+
+{% block body %}
+  <h1 class="page-header">View article</h1>
+
+  {% include 'Templates/Messages/flash-success.html' %}
+
+  <table class="table mt2">
+    <tbody>
+      <tr>
+        <td class="text-bold col-xs-4 col-sm-2">ID</td>
+        <td>{{ article.id }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Published</td>
+        <td>{{ article.published == true ? 'Yes' : 'No' }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Created</td>
+        <td>{{ article.created_at|date('d M Y H:i:s') }}</td>
+      </tr>
+      <tr>
+        {% if article.published == true %}
+          <td class="text-bold">Published date</td>
+        {% else %}
+          <td class="text-bold">Last modified</td>
+        {% endif %}
+        <td>{{ article.updated_at|date('d M Y H:i:s') }}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h2>{{ article.title|title }}</h2>
+          <div>{{ article.content|raw }}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions mb5 mt2">
+    {% if auth.role == 'author' %}
+      <a href="{{ urlFor('article_edit', {'id': article.id}) }}" class="btn btn-link">
+        Edit
+      </a>
+    {% endif %}
+    <form action="{{ urlFor('article_delete', {'id': article.id}) }}" method="post">
+      <input type="hidden" name="_METHOD" value="DELETE"/>
+      <button type="submit" class="btn btn-link">Delete</button>
+      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+    </form>
+  </div>
+
+{% endblock %}

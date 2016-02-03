@@ -1,0 +1,22 @@
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+
+      <a class="blog-nav-item {% if active_home %}{{ active_home }}{% endif %}" href="{{ urlFor('home') }}">Home</a>
+      <a class="blog-nav-item {% if active_contact %}{{ active_contact }}{% endif %}" href="{{ urlFor('contact_us') }}">Contact us</a>
+
+      {% if auth %}
+        {% if auth.role == 'author' %}
+          <a class="blog-nav-item" href="{{ urlFor('user_home') }}">Hi, {{ auth.name|title }}</a>
+        {% elseif auth.role == 'admin' %}
+          <a class="blog-nav-item" href="{{ urlFor('dashboard') }}">Hi, {{ auth.name|title }}</a>
+        {% endif %}
+        <a class="blog-nav-item" href="{{ urlFor('logout') }}">Log out</a>
+      {% else %}
+        <a class="blog-nav-item {% if active_signup %}{{ active_signup }}{% endif %}" href="{{ urlFor('register') }}">Register</a>
+        <a class="blog-nav-item {% if active_signin %}{{ active_signin }}{% endif %}" href="{{ urlFor('login') }}">Log in</a>
+      {% endif %}
+
+    </nav>
+  </div>
+</div>

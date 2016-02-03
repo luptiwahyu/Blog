@@ -1,0 +1,98 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}User ~ edit{% endblock %}
+
+{% block body %}
+	<h1 class="page-header">Edit user</h1>
+
+	{% include 'Templates/Messages/errors.html' %}
+
+	<form class="form-horizontal" method="POST">
+
+		<input type="hidden" name="_METHOD" value="PUT">
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-5">
+				<input type="text" name="name" class="form-control" {% if request.post('name') %}value="{{ request.post('name') }}"{% else %}value="{{ user.name }}"{% endif %}>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Date of Birth</label>
+			<div class="col-sm-5 form-inline">
+
+				<!-- SELECT DAY  -->
+				<select class="form-control" name="day_birth">
+					<option value="">Day</option>
+					{% if user.dob == null %}
+						{% for day in 1..31 %}
+							<option value="{{ day }}">{{ day }}</option>
+						{% endfor %}
+					{% else %}
+						{% for day in 1..31 %}
+							{% if day == user.dob|date('j') %}
+								<option value="{{ user.dob|date('j') }}" selected>{{ user.dob|date('j') }}</option>
+							{% else %}
+								<option value="{{ day }}">{{ day }}</option>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</select>
+
+				<!-- SELECT MONTH  -->
+				<select class="form-control" name="month_birth">
+					<option value="">Month</option>
+					{% if user.dob == null %}
+						{% for key, month in months %}
+							<option value="{{ key }}">{{ month }}</option>
+						{% endfor %}
+					{% else %}
+						{% for key, month in months %}
+							{% if month == user.dob|date('F') %}
+								<option value="{{ user.dob|date('m') }}" selected>{{ user.dob|date('F') }}</option>
+							{% else %}
+								<option value="{{ key }}">{{ month }}</option>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</select>
+
+				<!-- SELECT YEAR  -->
+				<select class="form-control" name="year_birth">
+					<option value="">Year</option>
+					{% if user.dob == null %}
+						{% for year in 1960.."now"|date('Y') %}
+							<option value="{{ year }}">{{ year }}</option>
+						{% endfor %}
+					{% else %}
+						{% for year in 1960.."now"|date('Y') %}
+							{% if year == user.dob|date('Y') %}
+								<option value="{{ user.dob|date('Y') }}" selected>{{ user.dob|date('Y') }}</option>
+							{% else %}
+								<option value="{{ year }}">{{ year }}</option>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</select>
+
+			</div>
+		</div>
+		
+		{# <div class="form-group">
+			<label class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-5">
+				<input type="email" name="email" class="form-control" value="{{ user.email }}">
+			</div>
+		</div> #}
+
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				<button type="submit" class="btn btn-default">Save change</button>
+			</div>
+		</div>
+
+		<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+	</form>
+
+{% endblock %}

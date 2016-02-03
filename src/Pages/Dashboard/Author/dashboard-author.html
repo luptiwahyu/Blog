@@ -1,0 +1,76 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.0.0/css/responsive.bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-header">Dashboard</h1>
+
+  {% include 'Templates/Messages/flash-success.html' %}
+
+  <a href="{{ urlFor('article_new') }}" class="btn btn-default">
+    + &nbsp;New article
+  </a>
+
+  <div class="mt2 mb5">
+    <table class="table table-hover table-bordered dt-responsive nowrap" id="article" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Published</th>
+          <th>Created</th>
+          <th>Last Modified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% if articles is empty %}
+          <tr>
+            <td colspan="6" class="text-center">
+              <em>No records in data table</em>
+            </td>
+          </tr>
+        {% endif %}
+
+        {% for article in articles %}
+          <tr>
+            <td>{{ article.title|title }}</td>
+            <td>{{ article.published ? 'Yes' : 'No' }}</td>
+            <td>{{ article.created_at|date('d M Y H:i:s') }}</td>
+            <td>{{ article.updated_at|date('d M Y H:i:s') }}</td>
+            <td class="actions">
+              <a href="{{ urlFor('article_show', {'id': article.id}) }}" class="btn btn-xs btn-default">View</a>
+              <a href="{{ urlFor('article_edit', {'id': article.id}) }}" class="btn btn-xs btn-success">Edit</a>
+              <!-- DELETE FORM -->
+              <form action="{{ urlFor('article_delete', {'id': article.id}) }}" method="post">
+                <input type="hidden" name="_METHOD" value="DELETE"/>
+                <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Delete</button>
+                <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+              </form>              
+            </td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.0.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.0.0/js/responsive.bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#article').DataTable();
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'Templates/Back/main.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+  <h1 class="page-header">Profile</h1>
+
+  {% include 'Templates/Messages/flash-success.html' %}
+
+  <table class="table mt2">
+    <tbody>
+      <tr>
+        <td class="text-bold col-xs-4 col-sm-2">ID</td>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold ">Name</td>
+        <td>{{ user.name|title }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Date of birth</td>
+        <td>
+          {% if user.dob %}
+            {{ user.dob|date('d F Y') }}
+          {% else %}
+            <em class="text-warning">not specified</em>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td class="text-bold">Role</td>
+        <td>{{ user.role|title }}</td>
+      </tr>
+      <tr>
+        <td class="text-bold">Email</td>
+        <td>
+          {{ user.email }} &nbsp;&nbsp;
+          <a href="{{ urlFor('email_change') }}">Change Email</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-bold">Password</td>
+        <td>
+          <a href="{{ urlFor('password_change') }}">Change Password</a>
+        </td>
+      </tr>
+
+      {% if auth %}
+        {% if auth.role == 'admin' %}
+          <tr>
+            <td class="text-bold">Created</td>
+            <td>{{ user.created_at|date('d M Y H:i:s') }}</td>
+          </tr>
+          <tr>
+            <td class="text-bold">Last modified</td>
+            <td>{{ user.updated_at|date('d M Y H:i:s') }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td class="text-bold">Joined</td>
+            <td>{{ user.created_at|date('d M Y H:i:s') }}</td>
+          </tr>
+        {% endif %}
+      {% endif %}
+
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <a href="{{ urlFor('user_edit', {'id': user.id}) }}" class="btn btn-link">
+      Edit
+    </a>
+    
+    <form action="{{ urlFor('user_deactivate') }}" method="POST">
+      <input type="hidden" name="_METHOD" value="PUT"/>
+      <button type="submit" class="btn btn-link">Deactivate account</button>
+      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+    </form>
+  </div>
+
+{% endblock %}

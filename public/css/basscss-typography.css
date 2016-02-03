@@ -1,0 +1,57 @@
+/*
+
+  Basscss
+  http://basscss.com
+
+  330 B
+  18 Rules
+  18 Selectors
+  23 Declarations
+  Generated with http://basscss.com/customize
+
+*/
+.h1 { font-size: 2rem }
+.h2 { font-size: 1.5rem }
+.h3 { font-size: 1.25rem }
+.h4 { font-size: 1rem }
+.h5 { font-size: .875rem }
+.h6 { font-size: .75rem }
+
+.text-bold    { font-weight: bold }
+.text-regular { font-weight: normal }
+.text-italic  { font-style: italic }
+.text-thin    { font-weight: 200; }
+
+.text-underline     { text-decoration: underline; }
+.text-no-underline  { text-decoration: none; }
+
+.text-uppercase    { text-transform: uppercase; letter-spacing: .2em; }
+.text-lowercase    { text-transform: lowercase; }
+.text-capitalize   { text-transform: capitalize; }
+
+.text-left    { text-align: left }
+.text-center  { text-align: center }
+.text-right   { text-align: right }
+.text-justify { text-align: justify }
+
+.text-nowrap      { white-space: nowrap }
+.text-break-word  { word-wrap: break-word }
+
+.tracked          { letter-spacing: 4px; }
+
+.truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list-style-none  { list-style-type: none; }
+.list-inline li   { display: inline; }
+
+
