@@ -6,7 +6,7 @@ $app->get('/forgot-password', $guest(), function() use ($app) {
 })->name('password_forgot');
 
 
-$app->put('/forgot-password', $guest(), function() use ($app) {
+$app->post('/forgot-password', $guest(), function() use ($app) {
 
     $email = $app->request->post('email');
 

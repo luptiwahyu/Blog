@@ -8,8 +8,10 @@ $app->get('/change-email', $authenticated(), function() use ($app) {
 
 $app->put('/change-email', $authenticated(), function() use ($app) {
 
-    $email    = $app->request->post('email');
-    $password = $app->request->post('password');
+    $request = $app->request;
+
+    $email    = filter_var($request->put('email'), FILTER_SANITIZE_EMAIL);
+    $password = $request->post('password');
 
     $v = $app->validation;
 
@@ -37,7 +39,7 @@ $app->put('/change-email', $authenticated(), function() use ($app) {
     }
 
     $app->render('Pages/EmailChange/email-change.html', [
-        'request' => $app->request,
+        'request' => $request,
         'errors'  => $v->errors()->all(),
     ]);
 

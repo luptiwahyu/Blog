@@ -13,10 +13,12 @@ $app->get('/article/:id/edit', $author(), function($id) use ($app) {
 
 $app->put('/article/:id/edit', $author(), function($id) use ($app) {
 
-    $title   = $app->request->post('title');
-    $content = $app->request->post('content');
-    $publish = $app->request->post('publish');
-    $save    = $app->request->post('save');
+    $request = $app->request;
+
+    $title   = filter_var($request->put('title'), FILTER_SANITIZE_STRING);
+    $content = $request->put('content');
+    $publish = $request->put('publish');
+    $save    = $request->put('save');
 
     $v = $app->validation;
 
@@ -56,7 +58,7 @@ $app->put('/article/:id/edit', $author(), function($id) use ($app) {
     
     $app->render('Pages/Article/Edit/article-edit.html', [
         'errors'  => $v->errors()->all(),
-        'request' => $app->request,
+        'request' => $request,
     ]);
 
 })->name('article_edit_post');

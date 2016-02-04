@@ -1,21 +1,26 @@
 <?php 
 
 $app->get('/edit', $authenticated(), function() use ($app) {
+
     $months = months();
 
     $app->render('Pages/User/Edit/user-edit.html', array(
         'months' => $months,
         'user'   => $app->auth,
     ));
+
 })->name('user_edit');
+
 
 $app->put('/edit', $authenticated(), function() use ($app) {
 
-    $name  = $app->request->post('name');
+    $request = $app->request;
 
-    $dayBirth   = $app->request->post('day_birth');
-    $monthBirth = $app->request->post('month_birth');
-    $yearBirth  = $app->request->post('year_birth');
+    $name = filter_var($request->put('name'), FILTER_SANITIZE_STRING);
+
+    $dayBirth   = $request->put('day_birth');
+    $monthBirth = $request->put('month_birth');
+    $yearBirth  = $request->put('year_birth');
     $dob        = $yearBirth . "-" . $monthBirth . "-" . $dayBirth;
 
     $dobCheck = checkdate(
@@ -51,7 +56,7 @@ $app->put('/edit', $authenticated(), function() use ($app) {
     $app->render('Pages/User/Edit/user-edit.html', [
         'errors'  => $v->errors()->all(),
         'months'  => $months,
-        'request' => $app->request,
+        'request' => $request,
     ]);
 
 })->name('user_edit_post');

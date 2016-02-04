@@ -8,10 +8,12 @@ $app->get('/register', $guest(), function() use ($app) {
 
 $app->post('/register', $guest(), function () use ($app) {
 
-    $name     = $app->request->post('name');
-    $email    = $app->request->post('email');
+    $request = $app->request;
+
+    $name  = filter_var($request->post('name'), FILTER_SANITIZE_STRING);
+    $email = filter_var($request->post('email'), FILTER_SANITIZE_EMAIL);
     
-    $password     = $app->request->post('password');
+    $password     = $request->post('password');
     $passwordHash = $app->hash->passwordHash($password);
     
     $v = $app->validation;
@@ -54,7 +56,7 @@ $app->post('/register', $guest(), function () use ($app) {
 
     $app->render('Pages/Sign/Signup/signup.html', array(
         'errors'  => $v->errors()->all(),
-        'request' => $app->request,
+        'request' => $request,
     ));
 
 })->name('register_post');

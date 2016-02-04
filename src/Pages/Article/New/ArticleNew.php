@@ -7,10 +7,12 @@ $app->get('/article/new', $author(), function() use ($app) {
 
 $app->post('/article/new', $author(), function() use ($app) {
 
-    $title   = $app->request->post('title');
-    $content = $app->request->post('content');
-    $publish = $app->request->post('publish');
-    $save    = $app->request->post('save');
+    $request = $app->request;
+
+    $title   = filter_var($request->post('title'), FILTER_SANITIZE_STRING);
+    $content = $request->post('content');
+    $publish = $request->post('publish');
+    $save    = $request->post('save');
 
     $v = $app->validation;
 
@@ -55,7 +57,7 @@ $app->post('/article/new', $author(), function() use ($app) {
 
     $app->render('Pages/Article/New/article-new.html', [
         'errors'  => $v->errors()->all(),
-        'request' => $app->request,
+        'request' => $request,
     ]);
 
 })->name('article_new_post');

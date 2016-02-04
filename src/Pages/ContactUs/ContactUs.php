@@ -9,10 +9,12 @@ $app->get('/contact-us', function() use ($app) {
 
 $app->post('/contact-us', function() use ($app) {
 
-    $name    = $app->request->post('name');
-    $email   = $app->request->post('email');
-    $subject = $app->request->post('subject');
-    $message = $app->request->post('message');
+    $request = $app->request;
+
+    $name    = filter_var($request->post('name'), FILTER_SANITIZE_STRING);
+    $email   = filter_var($request->post('email'), FILTER_SANITIZE_EMAIL);
+    $subject = filter_var($request->post('subject'), FILTER_SANITIZE_STRING);
+    $message = filter_var($request->post('message'), FILTER_SANITIZE_STRING);
 
     $v = $app->validation;
 
@@ -44,7 +46,7 @@ $app->post('/contact-us', function() use ($app) {
 
     $app->render('Pages/ContactUs/contact-us.html', [
         'errors'  => $v->errors()->all(),
-        'request' => $app->request,
+        'request' => $request,
     ]);
 
 })->name('contact_us_post');

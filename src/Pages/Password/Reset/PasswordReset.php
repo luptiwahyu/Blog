@@ -29,6 +29,7 @@ $app->get('/reset-password', $guest(), function() use ($app) {
 
 })->name('password_reset');
 
+
 $app->put('/reset-password', $guest(), function() use ($app) {
 
     $email      = $app->request->get('email');
@@ -36,8 +37,8 @@ $app->put('/reset-password', $guest(), function() use ($app) {
 
     $hashedIdentifier = $app->hash->hash($identifier);
 
-    $password        = $app->request->post('password');
-    $passwordConfirm = $app->request->post('password_confirm');
+    $password        = $app->request->put('password');
+    $passwordConfirm = $app->request->put('password_confirm');
 
     $passwordHash = $app->hash->passwordHash($password);
 
