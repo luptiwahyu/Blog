@@ -29,15 +29,15 @@ $app->post('/register', $guest(), function () use ($app) {
         $id         = uniqid();
         $identifier = $app->randomlib->generateString(128);
 
-        $user = $app->user->create([
-            'id'          => $id,
-            'name'        => $name,
-            'email'       => $email,
-            'password'    => $passwordHash,
-            'role'        => 'author',
-            'active'      => false,
-            'active_hash' => $app->hash->hash($identifier),
-        ]);
+        $user = $app->user;
+
+        $user->id          = $id;
+        $user->name        = $name;
+        $user->email       = $email;
+        $user->password    = $passwordHash;
+        $user->role        = 'author';
+        $user->active      = false;
+        $user->active_hash = $app->hash->hash($identifier);
 
         $body = $app->view->render('Templates/Email/registered.html', [
             'user'       => $user,
@@ -47,10 +47,16 @@ $app->post('/register', $guest(), function () use ($app) {
         $app->mail->addAddress($user->email);
         $app->mail->Subject = 'Thanks for registering.';
         $app->mail->Body    = $body;
-        $app->mail->send();
 
-        $app->flash('success', 'Thank you for registering. Check the email to activated your account.');
-        return $app->redirect($app->urlFor('notice'));
+        if (!$app->mail->send()) {
+            $app->flash('error', 'Registration failed. Please try again.');
+            return $app->redirect($app->urlFor('notice'));
+        } else {
+            $user->save();
+
+            $app->flash('success', 'Thank you for registering. Check the email to activated your account.');
+            return $app->redirect($app->urlFor('notice'));
+        }
         
     }
 

@@ -5,4 +5,3 @@ composer.phar
 composer.lock
 !/app/logs/.keepme
 !/app/cache/twig/.keepme
-/app/config/development.php
