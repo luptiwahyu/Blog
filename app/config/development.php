@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    
     'app' => [
         'url'  => 'http://localhost:8000',
         'name' => 'blog',
@@ -36,8 +37,8 @@ return [
         'smtp_auth'   => true,
         'smtp_secure' => 'tls',
         'host'        => 'smtp.gmail.com',
-        'username'    => 'lupinoftheheiseiera@gmail.com',
-        'password'    => 'Kait0Kur0ba',
+        'username'    => 'example@gmail.com',
+        'password'    => 'SecretPassword',
         'port'        => 587,
         'html'        => true,
     ],
