@@ -55,7 +55,7 @@ $app->post('/login', $guest(), function () use ($app) {
 
         } else {
 
-            $app->flash('error', 'Email address or password incorrect.');
+            $app->flash('error', 'Incorrect email address or password.');
             return $app->redirect('/login');
         
         }

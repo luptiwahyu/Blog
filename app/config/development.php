@@ -3,9 +3,16 @@
 return [
     'app' => [
         'url'  => 'http://localhost:8000',
-        'hash' => [
+        'name' => 'blog',
+    ],
+
+    'security' => [
+        'password' => [
             'algo' => PASSWORD_BCRYPT,
-            'cost' => 10
+            'cost' => 10,
+        ],
+        'hash' => [
+            'algo' => 'sha256'
         ]
     ],
 
@@ -41,5 +48,6 @@ return [
 
     'csrf' => [
         'key' => 'csrf_token'
-    ]
+    ],
+
 ];

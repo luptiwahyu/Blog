@@ -16,7 +16,7 @@ use Cocur\Slugify\Slugify;
 $view = $app->view();
 
 $view->parserOptions = array(
-    'debug' => true,    
+    'debug' => $app->config->get('twig.debug'),    
     'cache' => ROOT_PATH . '/app/cache/twig'
 );
 
