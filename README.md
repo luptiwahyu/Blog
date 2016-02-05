@@ -2,6 +2,8 @@
 
 Built using Slim framework and Bootstrap 3
 
+**---note: under development**
+
 ### Features
 
 * Authentication
