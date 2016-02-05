@@ -1,7 +1,5 @@
 <?php 
 
-use Carbon\Carbon;
-
 
 $app->get('/login', $guest(), function() use ($app) {
     $app->render('Pages/Sign/Signin/signin.html');
@@ -43,7 +41,7 @@ $app->post('/login', $guest(), function () use ($app) {
                 $app->setCookie(
                     $app->config->get('auth.remember'),
                     "{$rememberIdentifier}___{$rememberToken}",
-                    Carbon::parse('+1 week')->timestamp
+                    '2 weeks'
                 );
             }
 
