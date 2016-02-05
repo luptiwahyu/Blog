@@ -6,5 +6,5 @@ Built using Slim framework and Bootstrap 3
 
 * Authentication
 * Crud
-* Filter (sanitize, validate, escape)
-* Csrf
+* Filter (sanitize, validate, and escape)
+* Csrf protection
