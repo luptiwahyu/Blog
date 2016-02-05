@@ -1,4 +1,4 @@
-# Crazy simple blog
+# Crazy Simple Blog
 
 Built using Slim Framework and Bootstrap 3
 
