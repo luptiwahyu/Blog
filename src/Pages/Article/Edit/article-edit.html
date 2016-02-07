@@ -1,6 +1,6 @@
 {% extends 'Templates/Back/main.html' %}
 
-{% block title %}Article ~ new{% endblock %}
+{% block title %}Article ~ edit{% endblock %}
 
 {% block body %}
   <h1 class="page-header">Edit article</h1>
@@ -13,7 +13,7 @@
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Title</label>
       <div class="col-sm-5">
-        <input type="text" name="title" class="form-control" id="title" placeholder="Article title" value="{% if request.post('title') %}{{ request.post('title') }}{% else %}{{ article.title }}{% endif %}">
+        <input type="text" name="title" class="form-control" id="title" placeholder="Article title" required value="{% if request.post('title') %}{{ request.post('title') }}{% else %}{{ article.title }}{% endif %}">
       </div>
     </div>
     <div class="form-group">
@@ -30,8 +30,18 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" name="publish" class="btn btn-primary mr1">Publish now</button>
-        <button type="submit" name="save" class="btn btn-default">Save change. Publish later</button>
+        <button type="submit" name="publish" class="btn btn-primary mr1">
+          {% if article.published_at %}
+            Save change
+          {% else %}
+            Publish now
+          {% endif %}
+        </button>
+
+        {% if article.published_at is null %}
+          <button type="submit" name="save" class="btn btn-default">Save change to draft</button>
+        {% endif %}
+
       </div>
     </div>
 

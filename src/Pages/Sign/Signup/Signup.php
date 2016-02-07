@@ -51,12 +51,12 @@ $app->post('/register', $guest(), function () use ($app) {
         if (!$app->mail->send()) {
             $app->flash('error', 'Registration failed. Please try again.');
             return $app->redirect($app->urlFor('notice'));
-        } else {
-            $user->save();
-
-            $app->flash('success', 'Thank you for registering. Check the email to activated your account.');
-            return $app->redirect($app->urlFor('notice'));
         }
+        
+        $user->save();
+
+        $app->flash('success', 'Thank you for registering. Check the email to activated your account.');
+        return $app->redirect($app->urlFor('notice'));
         
     }
 

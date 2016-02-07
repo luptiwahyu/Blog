@@ -16,24 +16,33 @@ $app->post('/article/new', $author(), function() use ($app) {
 
     $v = $app->validation;
 
+    $v->addRuleMessage('uniqueTitle', '{field} is already exist. Please change the title.');
+
+    $v->addRule('uniqueTitle', function($value, $input, $args) use ($app) {
+        $article = $app->article->where('title_slug', $app->slug->slugify($value));
+        return ! (bool) $article->exists();
+    });
+
     $v->validate([
-        'title'   => [$title, 'required'],
-        'content' => [$content, 'required'],
+        'Title'   => [$title, 'required|uniqueTitle'],
+        'Content' => [$content, 'required'],
     ]);
 
     if ($v->passes()) {
 
         $user = $app->auth;
         $id   = uniqid();
+        $slug = $app->slug;
 
         if (isset($publish)) {
-            
+
             $app->article->create([
-                'id'        => $id,
-                'title'     => $title,
-                'content'   => $content,
-                'published' => true,
-                'user_id'   => $user->id,
+                'id'           => $id,
+                'title'        => $title,
+                'title_slug'   => $slug->slugify($title),
+                'content'      => $content,
+                'published_at' => date("Y-m-d H:i:s"),
+                'user_id'      => $user->id,
             ]);
 
             $app->flash('success', 'Successfully posted new article.');
@@ -42,11 +51,11 @@ $app->post('/article/new', $author(), function() use ($app) {
         } elseif (isset($save)) {
             
             $app->article->create([
-                'id'        => $id,
-                'title'     => $title,
-                'content'   => $content,
-                'published' => false,
-                'user_id'   => $user->id,
+                'id'         => $id,
+                'title'      => $title,
+                'title_slug' => $slug->slugify($title),
+                'content'    => $content,
+                'user_id'    => $user->id,
             ]);
 
             $app->flash('success', 'Successfully created new article.');

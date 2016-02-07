@@ -9,7 +9,7 @@
   {% for article in articles %}
     <div class="blog-post">
       <h2 class="blog-post-title">{{ article.title|title }}</h2>
-      <p class="blog-post-meta">{{ article.updated_at|time_diff }} by <a href="#">{{ article.user.name|title }}</a></p>
+      <p class="blog-post-meta">{{ article.published_at|time_diff }} by <a href="#">{{ article.user.name|title }}</a></p>
 
       {# {{ article.content[:400]|raw }} ... #}
 
@@ -21,15 +21,15 @@
       {{ articleContent[4]|raw }}.
 
       <p class="mt1">
-        <a href="{{ urlFor('article_view', {'title': article.title, 'id': article.id}) }}">Read more</a>
+        <a href="{{ urlFor('article_view', {'titleSlug': article.title|slugify}) }}">Read more</a>
       </p>
     </div><!-- /.blog-post -->
   {% endfor %}
 
   <nav>
     <ul class="pager">
-      <li class="previous">
-        <a href="{{ urlFor('article_page', {'number': 2}) }}"><span aria-hidden="true">&larr;</span> Older</a>
+      <li class="previous {% if articleAll|length <= 5 %}disabled{% endif %}">
+        <a {% if articleAll|length > 5 %}href="{{ urlFor('article_page', {'number': 2}) }}"{% endif %}><span aria-hidden="true">&larr;</span> Older</a>
       </li>
       <li class="next disabled">
         <a>Newer <span aria-hidden="true">&rarr;</span></a>

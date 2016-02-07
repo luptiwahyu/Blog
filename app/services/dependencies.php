@@ -60,6 +60,10 @@ $app->container->singleton('hash', function() use ($app) {
     return new Hash($app->config);
 });
 
+$app->container->singleton('slug', function() {
+    return new Slugify;
+});
+
 $app->container->singleton('validation', function() use ($app) {
     return new Validator(new User, $app->hash, $app->auth);
 });
@@ -69,8 +73,4 @@ $app->container->singleton('log', function() {
     $log->pushHandler(new StreamHandler(ROOT_PATH . '/app/logs/app.log', Logger::DEBUG));
     
     return $log;
-});
-
-$app->container->singleton('slug', function() {
-    return new Slugify;
 });

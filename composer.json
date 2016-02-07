@@ -13,6 +13,7 @@
         "alexgarrett/violin": "^2.2",
         "twig/extensions": "^1.3",
         "monolog/monolog": "^1.17",
-        "cocur/slugify": "^1.4"
+        "cocur/slugify": "^1.4",
+        "fzaninotto/faker": "^1.5"
     }
 }

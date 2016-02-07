@@ -21,7 +21,7 @@
       <thead>
         <tr>
           <th>Title</th>
-          <th>Published</th>
+          <th>Published Date</th>
           <th>Created</th>
           <th>Last Modified</th>
           <th>Actions</th>
@@ -40,7 +40,11 @@
         {% for article in articles %}
           <tr>
             <td>{{ article.title|title }}</td>
-            <td>{{ article.published ? 'Yes' : 'No' }}</td>
+            {% if article.published_at is empty %}
+              <td><em class="text-warning">Not yet published</em></td>
+            {% else %}
+              <td>{{ article.published_at|date('d M Y H:i:s') }}</td>
+            {% endif %}
             <td>{{ article.created_at|date('d M Y H:i:s') }}</td>
             <td>{{ article.updated_at|date('d M Y H:i:s') }}</td>
             <td class="actions">

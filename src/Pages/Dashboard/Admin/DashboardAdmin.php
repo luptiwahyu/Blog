@@ -5,7 +5,7 @@ $app->get('/dashboard', $admin(), function() use ($app) {
     $users = $app->user->where('role', 'author')->get();
 
     $articles = $app->article->with('user')
-                ->where('published', true)
+                ->whereNotNull('published_at')
                 ->get();
 
     $app->render('Pages/Dashboard/Admin/dashboard-admin.html', array(

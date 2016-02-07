@@ -83,7 +83,7 @@
           <tr>
             <td>{{ article.title|title }}</td>
             <td>{{ article.user.name|title }}</td>
-            <td>{{ article.updated_at|date('d M Y H:i:s') }}</td>
+            <td>{{ article.published_at|date('d M Y H:i:s') }}</td>
             <td class="actions">
               <a href="{{ urlFor('article_show', {'id': article.id}) }}" type="button" class="btn btn-xs btn-success">
                 View

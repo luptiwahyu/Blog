@@ -7,7 +7,7 @@ require ROOT_PATH . '/src/Pages/Home/Home.php';
 require ROOT_PATH . '/src/Pages/ContactUs/ContactUs.php';
 
 // ARTICLE PAGE
-require ROOT_PATH . '/src/Pages/Article/Page/Page.php';
+require ROOT_PATH . '/src/Pages/Article/Page/ArticlePage.php';
 
 // SIGN
 require ROOT_PATH . '/src/Pages/Sign/Signin/Signin.php';

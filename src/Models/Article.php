@@ -15,8 +15,9 @@ class Article extends Eloquent {
     protected $fillable = [
         'id',
         'title',
+        'title_slug',
         'content',
-        'published',
+        'published_at',
         'created_at',
         'updated_at',
         'user_id',

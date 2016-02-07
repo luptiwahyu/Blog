@@ -21,7 +21,7 @@ return [
         'driver'    => 'mysql',
         'host'      => 'localhost',
         'database'  => 'dbname',
-        'username'  => 'root',
+        'username'  => 'roor',
         'password'  => '',
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci',

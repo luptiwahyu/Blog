@@ -17,15 +17,15 @@ class Validator extends Violin
 
     public function __construct(User $user, Hash $hash, $auth = null)
     {
-        $this->user = $user;
-        $this->hash = $hash;
-        $this->auth = $auth;
+        $this->user    = $user;
+        $this->hash    = $hash;
+        $this->auth    = $auth;
 
         $this->addRuleMessages([
             'uniqueEmail'            => '{field} is already in use.',
             'uniqueUsername'         => '{field} is already in use.',
-            'activation'             => 'Please check the email to activate your account.',
             'matchesCurrentPassword' => '{field} does not match your current password.',
+            'activation'             => 'Please check the email to activate your account.',
         ]);
     }
 
