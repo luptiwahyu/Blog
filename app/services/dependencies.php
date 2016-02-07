@@ -2,6 +2,7 @@
 
 use Blog\Models\User;
 use Blog\Models\Article;
+use Blog\Models\Comment;
 
 use Blog\Helpers\Hash;
 use Blog\Helpers\Validator;
@@ -32,6 +33,10 @@ $app->container->set('user', function() {
 
 $app->container->set('article', function() {
     return new Article;
+});
+
+$app->container->set('comment', function() {
+    return new Comment;
 });
 
 $app->container->singleton('mail', function() use ($app) {

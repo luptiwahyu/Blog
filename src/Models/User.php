@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 /**
  * 
  */
-class User extends Eloquent {
-	
+class User extends Eloquent 
+{	
     protected $table = 'users';
     public $incrementing = false;
     
@@ -32,7 +32,8 @@ class User extends Eloquent {
      * Relationship for article
      * Get the articles for the user author.
      */
-    public function articles() {
+    public function articles() 
+    {
         return $this->hasMany('Blog\Models\Article');
     }
 

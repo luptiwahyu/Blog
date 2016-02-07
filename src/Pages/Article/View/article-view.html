@@ -12,4 +12,46 @@
     {{ article.content|raw }}
   </div><!-- /.blog-post -->
 
+
+  <div>
+    <form action="{{ urlFor('article_comment_post', {'titleSlug': article.title_slug}) }}" method="POST">
+      <legend>Leave a comment</legend>
+    
+      <div class="form-group">
+        <textarea name="comment" class="form-control" rows="3" placeholder="Your comment here..."></textarea>
+      </div>
+      <label>Anonymous</label>
+      {% if errors.has('Comment') %}
+        <span class="text-danger ml3"><em>{{ errors.first('Comment') }}</em></span>
+      {% endif %}
+      <button type="submit" class="btn btn-default btn-lg pull-right">Post</button>
+      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+    </form>
+  </div>
+
+
+  <div class="mt4 mb5">
+    {% if comments|length > 0 %}
+      <legend>{{ comments|length }} Comments</legend>
+    {% endif %}
+
+    {% for comment in comments %}
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td class="col-sm-1 col-xs-1"><img src="http://www.gravatar.com/avatar/?s=45&d=mm" class="img-responsive" style="margin-top:3px" alt="Image"></td>
+            <td>
+              <a href="#">{{ comment.user_name|title }}</a>&nbsp;&nbsp;
+              <span style="color:#999">{{ comment.created_at|time_diff }}</span>
+              <p class="mt1">{{ comment.body }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+    {% endfor %}
+
+  </div>
+
+
 {% endblock %}

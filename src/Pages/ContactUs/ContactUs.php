@@ -19,10 +19,10 @@ $app->post('/contact-us', function() use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'name'    => [$name, 'required'],
-        'email'   => [$email, 'required|email'],
-        'subject' => [$subject, 'required'],
-        'message' => [$message, 'required'],
+        'Name'    => [$name, 'required'],
+        'Email'   => [$email, 'required|email'],
+        'Subject' => [$subject, 'required'],
+        'Message' => [$message, 'required'],
     ]);
 
     if ($v->passes()) {

@@ -15,8 +15,8 @@ $app->post('/login', $guest(), function () use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'email'    => [$email, 'required|email'],
-        'password' => [$password, 'required'],
+        'Email'    => [$email, 'required|email'],
+        'Password' => [$password, 'required'],
     ]);
 
     if ($v->passes()) {

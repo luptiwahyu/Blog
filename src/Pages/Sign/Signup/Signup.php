@@ -19,9 +19,9 @@ $app->post('/register', $guest(), function () use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'name'     => [$name, 'required'],
-        'email'    => [$email, 'required|email|uniqueEmail'],
-        'password' => [$password, 'required|min(6)'],
+        'Name'     => [$name, 'required'],
+        'Email'    => [$email, 'required|email|uniqueEmail'],
+        'Password' => [$password, 'required|min(6)'],
     ]);
 
     if ($v->passes()) {

@@ -13,7 +13,7 @@ $app->post('/forgot-password', $guest(), function() use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'email' => [$email, 'required|email']
+        'Email' => [$email, 'required|email']
     ]);
 
     if ($v->passes()) {
